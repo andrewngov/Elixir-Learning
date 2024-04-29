@@ -7,26 +7,21 @@ defmodule HTTPServerTest do
   test "accepts a request on a socket and sends back a response" do
     spawn(HttpServer, :start, [4000])
 
-    parent = self()
+    urls = [
+      "http://localhost:4000/wildthings",
+      "http://localhost:4000/bears",
+      "http://localhost:4000/bears/1",
+      "http://localhost:4000/wildlife",
+      "http://localhost:4000/api/bears"
+    ]
 
-    #Spawn client processes
-    for _ <- 1..5 do
-      spawn(fn ->
-        #Send request
-        {:ok, response} = HTTPoison.get "http://localhost:4000/wildthings"
+    urls
+    |> Enum.map(&Task.async(fn -> HttPoison.get(&1) end))
+    |> Enum.map(&Task.await/1)
+    |> Enum.map(&assert_successful_response)
 
-        #Send response back to parent
-        send(parent, {:ok, response})
-      end)
-    end
-
-    #Await all messages from spawned processes
-    for _ <- 1..5 do
-      receive do
-        {:ok, response} ->
-          assert response.status_code == 200
-          assert response.body == "Bears, Lions, Tigers"
-      end
+    defp assert_successful_response({:ok, response}) do
+      assert response.status_code == 200
     end
   end
 end

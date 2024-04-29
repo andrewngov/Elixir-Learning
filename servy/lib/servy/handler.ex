@@ -13,6 +13,7 @@ defmodule Servy.Handler do
   import Servy.Plugins, only: [rewrite_path: 1, log: 1, track: 1]
   import Servy.Parser, only: [parse: 1]
   import Servy.FileHandler, only: [handle_file: 2]
+  #import Servy.View, only: [render: 3]
 
   @doc "Transforms the request into a response."
   def handle(request) do
@@ -26,7 +27,25 @@ defmodule Servy.Handler do
     |> format_response
   end
 
-  def route(%Conv{ method: "GET", path: "/kaboom" } = conv) do
+  def put_content_length(conv) do
+    headers = Map.put(conv.resp_headers, "Content-Length", String.length(conv.resp_body))
+    %{conv | resp_headers: headers}
+  end
+
+  def route(%Conv{ method: "GET", path: "/sensors" } = conv) do
+    task = Task.async(fn -> Servy.Tracker.get_location("bigfoot") end)
+
+    snapshots =
+      ["cam-1", "cam-2", "cam-3"]
+      |> Enum.map(&Task.async(fn -> VideoCam.get_snapshot(&1) end))
+      |> Enum.map(&Task.await/1)
+
+    where_is_bigfoot = Task.await(task)
+
+    %{ conv | status: 200, resp_body: inspect {snapshots, where_is_bigfoot}}
+  end
+
+  def route(%Conv{ method: "GET", path: "/kaboom" }) do
     raise "Kaboom!"
   end
 
@@ -34,11 +53,6 @@ defmodule Servy.Handler do
     time |> String.to_integer |> :timer.sleep
 
     %{ conv | status: 200, resp_body: "Awake!" }
-  end
-
-  def put_content_length(conv) do
-    headers = Map.put(conv.resp_headers, "Content-Length", String.length(conv.resp_body))
-    %{conv | resp_headers: headers}
   end
 
   def route(%Conv{ method: "GET", path: "/wildthings" } = conv) do
@@ -56,11 +70,6 @@ defmodule Servy.Handler do
   def route(%Conv{ method: "GET", path: "/bears/" <> id } = conv) do
     params = Map.put(conv.params, "id", id)
     BearController.show(conv, params)
-  end
-
-  # name=Baloo&type=Brown
-  def route(%Conv{method: "POST", path: "/bears"} = conv) do
-    BearController.create(conv, conv.params)
   end
 
   def route(%Conv{method: "GET", path: "/about"} = conv) do
@@ -84,28 +93,17 @@ defmodule Servy.Handler do
     |> handle_file(conv)
   end
 
+    # name=Baloo&type=Brown
+  def route(%Conv{method: "POST", path: "/bears"} = conv) do
+    BearController.create(conv, conv.params)
+  end
+
   def route(%Conv{ path: path } = conv) do
     %{ conv | status: 404, resp_body: "No #{path} here!"}
   end
 
   def route(conv, "DELETE", "/bears/" <> _id) do
     BearController.delete(conv, conv.params)
-  end
-
-  def route(%Conv{ method: "GET", path: "/snapshots" } = conv) do
-    parent = self() # the request-handling process
-
-    spawn(fn -> send(parent, {:result, VideoCam.get_snapshot("cam-1")}) end)
-    spawn(fn -> send(parent, {:result, VideoCam.get_snapshot("cam-2")}) end)
-    spawn(fn -> send(parent, {:result, VideoCam.get_snapshot("cam-3")}) end)
-
-    snapshot1 = receive do {:result, filename} -> filename end
-    snapshot2 = receive do {:result, filename} -> filename end
-    snapshot3 = receive do {:result, filename} -> filename end
-
-    snapshots = [snapshot1, snapshot2, snapshot3]
-
-    %{ conv | status: 200, resp_body: inspect snapshots}
   end
 
   # def route(%{method: "GET", path: "/about"} = conv) do
