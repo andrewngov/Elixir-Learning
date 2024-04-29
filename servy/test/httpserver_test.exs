@@ -7,22 +7,26 @@ defmodule HTTPServerTest do
   test "accepts a request on a socket and sends back a response" do
     spawn(HttpServer, :start, [4000])
 
-    request = """
-    GET /wildthings HTTP/1.1\r
-    Host: example.com\r
-    User-Agent: ExampleBrowser/1.0\r
-    Accept: */*\r
-    \r
-    """
+    parent = self()
 
-    response = HttpClient.send_request(request)
+    #Spawn client processes
+    for _ <- 1..5 do
+      spawn(fn ->
+        #Send request
+        {:ok, response} = HTTPoison.get "http://localhost:4000/wildthings"
 
-    assert response == """
-    HTTP/1.1 200 OK\r
-    Content-Type: text/html\r
-    Content-Length: 20\r
-    \r
-    Bears, Lions, Tigers
-    """
+        #Send response back to parent
+        send(parent, {:ok, response})
+      end)
+    end
+
+    #Await all messages from spawned processes
+    for _ <- 1..5 do
+      receive do
+        {:ok, response} ->
+          assert response.status_code == 200
+          assert response.body == "Bears, Lions, Tigers"
+      end
+    end
   end
 end
