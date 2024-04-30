@@ -7,3 +7,8 @@ Agents
 {:ok, agent} = Agent.start(fn -> [] end)
 Agent.update(agent, fn(state) -> [{"larry, 10} | state] end)
 Agent.get(agent, fn(state) -> state end)
+
+Lesson 25 - Refactor code towards GenServer style
+-Writing stateful server processes is so common theres an abstraction for this
+    -GenServer
+-Refactoring PledgeServer code to be generic and similar to the style of GenServer
