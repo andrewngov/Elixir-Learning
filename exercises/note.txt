@@ -1,0 +1,9 @@
+Lesson 24
+-Server can store state and do work(perform computations)
+-Processes are concurrent and run in parallel but message handling is serialized in server process(synchronization point)
+    -We don't want multiple processes trying to update cache at the same time
+Agents
+-Agent is a quick and easy way to store state in a process(only thing it can do)
+{:ok, agent} = Agent.start(fn -> [] end)
+Agent.update(agent, fn(state) -> [{"larry, 10} | state] end)
+Agent.get(agent, fn(state) -> state end)
