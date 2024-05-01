@@ -12,3 +12,20 @@ Lesson 25 - Refactor code towards GenServer style
 -Writing stateful server processes is so common theres an abstraction for this
     -GenServer
 -Refactoring PledgeServer code to be generic and similar to the style of GenServer
+
+Lesson 26 - OTP GenServer
+-Remove our server code and replace with GenServer
+-Use Task to perform a one-off computation or query asynchronously
+-Use Agent if you need a simple process to hold state
+-Use GenServer process if you need a long-running server process that stores state and performs work concurrently
+    -Schedule background work to be performed on a periodic interval
+    -Serialize access to a shared resource or service used by multiple concurrent processes
+-handle_call to handle synchronous requests sent by the client(3rd arg is timeout value, default is 5 seconds)
+-handle_cast to handle asynchronous requests
+-handle_info to handle all other requests
+-init(args) invoked when the server is started
+-terminate(reason, state) invokes when the server is about to terminate
+-code_change allows for state migration
+-:sys.get_state(pid) gets state of process
+-:sys.trace(pid, true)
+-:sys.get_status(pid)
