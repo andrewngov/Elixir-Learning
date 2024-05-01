@@ -34,3 +34,8 @@ Lesson 27 - Another GenServer
 -Change route handling of /sensor url to use Sensor Server
     -Server start init fetches and caches sensor data from external api and schedules a refresh every 60 mins
     -handle_info sends a refresh request again after refreshing the cache
+
+Lesson 28 - Linking Processes
+-Since HTTPServer is Non OTP we have a KickStarter GenServer that is linked to the HTTPServer
+-Create a KickStarter module that is linked to HTTPServer
+    -If HTTPServer exits unexpectedly, KickStarter starts a new HTTPServer process

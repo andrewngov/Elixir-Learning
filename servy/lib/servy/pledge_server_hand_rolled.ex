@@ -26,7 +26,7 @@ defmodule Servy.GenericServer do
         new_state = callback_module.handle_cast(message)
         listen_loop(new_state, callback_module)
       other ->
-        new_state = callback_module.handle_info(other, state)
+        callback_module.handle_info(other, state)
         listen_loop(state, callback_module)
     end
   end
@@ -39,7 +39,7 @@ defmodule Servy.PledgeServerHandRolled do
   alias Servy.GenericServer
 
   #Client Interface
-  def start(initial_state, name) do
+  def start do
     IO.puts "Starting the pledge server..."
     GenericServer.start(__MODULE__, [], @name)
   end

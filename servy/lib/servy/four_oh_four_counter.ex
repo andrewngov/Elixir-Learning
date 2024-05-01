@@ -31,7 +31,7 @@ defmodule Servy.FourOhFourCounter do
     GenServer.cast @name, :reset
   end
 
-  def handle_call(:bump_count, state) do
+  def handle_call({:bump_count, path}, state) do
     new_state = Map.update(state, path, 1, &(&1 + 1))
     {:ok, new_state}
   end

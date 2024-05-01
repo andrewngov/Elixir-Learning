@@ -26,20 +26,21 @@ defmodule Servy.SensorServer do
 
   # Server Callbacks
 
-  def init(_state) do
+  def init(state) do
     sensor_data = run_tasks_to_get_sensor_data()
     initial_state = %{state | sensor_data: sensor_data}
-    schedule_refresh()
+    schedule_refresh(state.refresh_interval)
     {:ok, initial_state}
   end
 
   def handle_cast({:set_refresh_interval, time}, state) do
     new_state = %{state | refresh_interval: time}
+    {:noreply, new_state}
   end
 
   def handle_info(:refresh, state) do
     IO.puts "Rfreshing the cache..."
-    new_state = run_tasks_to_get_sensor_data()
+    sensor_data = run_tasks_to_get_sensor_data()
     new_state = %{state | sensor_data: sensor_data}
     schedule_refresh(state.refresh_interval)
     {:noreply, new_state}
