@@ -29,3 +29,8 @@ Lesson 26 - OTP GenServer
 -:sys.get_state(pid) gets state of process
 -:sys.trace(pid, true)
 -:sys.get_status(pid)
+
+Lesson 27 - Another GenServer
+-Change route handling of /sensor url to use Sensor Server
+    -Server start init fetches and caches sensor data from external api and schedules a refresh every 60 mins
+    -handle_info sends a refresh request again after refreshing the cache
