@@ -39,3 +39,7 @@ Lesson 28 - Linking Processes
 -Since HTTPServer is Non OTP we have a KickStarter GenServer that is linked to the HTTPServer
 -Create a KickStarter module that is linked to HTTPServer
     -If HTTPServer exits unexpectedly, KickStarter starts a new HTTPServer process
+
+Lesson 29 & 30
+-Use built in module OTP Supervisor to supervise the processes
+    -Restarts the processes if an unexpected exit/crash occurs

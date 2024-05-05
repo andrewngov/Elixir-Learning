@@ -6,7 +6,7 @@ defmodule Servy.Handler do
 
   alias Servy.Conv
   alias Servy.BearController
-  alias Servy.VideoCam
+  #alias Servy.VideoCam
 
   @pages_path Path.expand("../pages", __DIR__)
 
@@ -42,11 +42,6 @@ defmodule Servy.Handler do
 
   def route(%Conv{method: "GET", path: "/pledges"} = conv) do
     Servy.PledgeController.index(conv)
-  end
-
-  def put_content_length(conv) do
-    headers = Map.put(conv.resp_headers, "Content-Length", String.length(conv.resp_body))
-    %{conv | resp_headers: headers}
   end
 
   def route(%Conv{ method: "GET", path: "/sensors" } = conv) do
@@ -114,6 +109,11 @@ defmodule Servy.Handler do
 
   def route(conv, "DELETE", "/bears/" <> _id) do
     BearController.delete(conv, conv.params)
+  end
+
+  def put_content_length(conv) do
+    headers = Map.put(conv.resp_headers, "Content-Length", String.length(conv.resp_body))
+    %{conv | resp_headers: headers}
   end
 
   # def route(%{method: "GET", path: "/about"} = conv) do
