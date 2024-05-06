@@ -1,0 +1,16 @@
+Lesson 3 - Button Clicks
+-LiveView's have 3 primary callback functions
+-mount, render and handle_event
+    -mount assigns state to the socket
+    -render renders the page using html code and can include eex tags and embedded phoenix
+    -handle_event handles events that are sent from render(for example button clicks)
+-In this lesson we build a light bar that can be increased/decreased with buttons
+
+Lesson 4 - LiveView Life Cycle
+-Initial HTTP request send a HTML page back
+-WebSocket is opened and spawns a LiveView Process which can react to events and update the page dynamically
+
+Lesson 5 - Dynamic Form 
+-Shows us how to update the page dynamically as we change input values on the page.
+-Change light bar from lesson 3 to use a slider instead of up and down buttons
+    -Add option to change colors of the light as well
