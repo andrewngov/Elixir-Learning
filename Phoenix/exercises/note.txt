@@ -1,3 +1,6 @@
+-A LiveView process is a process that receives events as messages, updates its state accordingly, renders a template, and sends back the diffs
+-Events can be sent externally by the browser(handle_event), or be sent internally by the LiveView itself or any other Elixir process(handle_info)
+
 Lesson 3 - Button Clicks
 -LiveView's have 3 primary callback functions
 -mount, render and handle_event
@@ -14,3 +17,8 @@ Lesson 5 - Dynamic Form
 -Shows us how to update the page dynamically as we change input values on the page.
 -Change light bar from lesson 3 to use a slider instead of up and down buttons
     -Add option to change colors of the light as well
+
+Lesson 6 - Dashboard
+-Update page internally, rather than external input by the user
+-Send self message after server is connected
+    -Use hande_info to update "sales" values on the page to random numbers
