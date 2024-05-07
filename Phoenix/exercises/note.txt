@@ -22,3 +22,8 @@ Lesson 6 - Dashboard
 -Update page internally, rather than external input by the user
 -Send self message after server is connected
     -Use hande_info to update "sales" values on the page to random numbers
+
+Lesson 7 - Search
+-Create a search bar for flights using phoenix that uses external input by the user to search values from database
+-Also included a loading indicator while waiting for results to show
+-Excercise: Implement search for finding a vehicle make or model
