@@ -35,7 +35,7 @@ defmodule LiveViewStudioWeb.LightLive do
         <div class="temps">
           <%= for temp <- ["3000", "4000", "5000"] do %>
             <div>
-              <input type="radio" id={temp} name="temp" value={temp}
+              <input type="radio" id={temp} name="temp" value={temp} phx-debounce="250"
               checked={temp == @temp} />
               <label for={temp}><%= temp %></label>
             </div>
