@@ -38,3 +38,10 @@ Lesson 9 - Filtering
 -Use temporary_assigns: to reset data if we don't need to keep information in process memory(just need to render it)
     -Minimizes memory usage on the server
 -Exercise: Implement filter for atheles(filter by sport and status)
+
+Lesson 10 - Function Components
+-Use function component
+    -Takes assigns and returns a heex template
+-Useful for managing duplication of markup and styles
+-Can render function components inside function components
+-Used to make code more readable
