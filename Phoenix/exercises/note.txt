@@ -27,3 +27,14 @@ Lesson 7 - Search
 -Create a search bar for flights using phoenix that uses external input by the user to search values from database
 -Also included a loading indicator while waiting for results to show
 -Excercise: Implement search for finding a vehicle make or model
+
+Lesson 8 - Autocomplete
+-Implemented autocomplete feature into phoenix LiveView(vehicle and flights from last lesson)
+    -Suggestions from Elixir file(pre-prepared by the course)
+
+Lesson 9 - Filtering
+-Filter boats by type(sporting, fishing and sailing) and price range(low, medium, high)
+-Use Ecto to query database of boats
+-Use temporary_assigns: to reset data if we don't need to keep information in process memory(just need to render it)
+    -Minimizes memory usage on the server
+-Exercise: Implement filter for atheles(filter by sport and status)
