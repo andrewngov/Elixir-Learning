@@ -54,3 +54,7 @@ Lesson 11 - Live Navigation
     -navigate to dismount current LiveView and mount new one - Used when you want to navigate to a different LiveView
     -patch to patch state of current LiveView and update URL - Used when you want to navigate to the same LiveView process
 -Change page title based on URL
+
+Lesson 12 - Sorting
+-Implement sorting for a database, either by id, item name, quantity, etc.(can also sort by ascending or descending)
+-Sorting parameters shown in the url
