@@ -57,4 +57,10 @@ Lesson 11 - Live Navigation
 
 Lesson 12 - Sorting
 -Implement sorting for a database, either by id, item name, quantity, etc.(can also sort by ascending or descending)
+    -Default values implemented as well
 -Sorting parameters shown in the url
+
+Lesson 13 - Paginations
+-Add paginations to a database as well as the option to set the number of items per page
+-Add way to navigate to previous and next page to view items
+-Pagination options stored in url so each page is easy to share and bookmark

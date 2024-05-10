@@ -18,7 +18,7 @@ defmodule LiveViewStudio.Donations do
 
   """
   def list_donations do
-    Repo.all(from d in Donation, order_by: [asc: d.id])
+    Repo.all(from(d in Donation, order_by: [asc: d.id]))
   end
 
   @doc """
@@ -142,6 +142,10 @@ defmodule LiveViewStudio.Donations do
 
   """
   def count_donations do
+    Repo.aggregate(Donation, :count, :id)
+  end
+
+  def donation_count do
     Repo.aggregate(Donation, :count, :id)
   end
 end
