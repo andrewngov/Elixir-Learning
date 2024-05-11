@@ -64,3 +64,12 @@ Lesson 13 - Paginations
 -Add paginations to a database as well as the option to set the number of items per page
 -Add way to navigate to previous and next page to view items
 -Pagination options stored in url so each page is easy to share and bookmark
+
+Lesson 14 - Live Ecto Forms and Lists
+-Add check in system(adds name & phone number to a database)
+    -Add validation(check for valid phone number and name to be more than 2 characters)
+-Create a form from a map
+    -to_form to convert an Ecto changeset into a form data structure
+
+Lesson 15 - Live validation
+-Change form to validate as the user is inputting the information
