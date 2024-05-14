@@ -94,3 +94,17 @@ Lesson 17 - Toggling State
 -Insert updated check_out status into stream
 -Streams lets us update, delete or add items from large collections without needing to fetch items from database after initial render
 -Add toggling of server status(server LiveView from previous lesson)
+
+Lesson 18 - Live Components
+-Extract components from code
+    -Don't start by designing components
+    -Get things working with code then move stuff into components when it makes sense
+-In the lesson, we move form and list of volunteers from render into live component module
+    -Allows us to use these components and their event handlers in other LiveViews
+-<.live_component module={} id={} /> to render a live component
+-In addition to live component handling markup and events, it also holds state, kind of like a mini LiveView
+-Add phx-target={@myself} to component module or else event is handled in parent module
+-Component rendered in same process as parent LiveView
+    -Send message to self when you want to update stream
+    -handle info to get message
+-Handle events in component module, update stream in parent module with handle_info(send message in component module)

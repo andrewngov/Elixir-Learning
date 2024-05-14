@@ -1,9 +1,9 @@
 defmodule LiveViewStudioWeb.CustomComponents do
   use Phoenix.Component
 
-  attr :expiration, :integer, default: 24
-  slot :legal
-  slot :inner_block, required: true
+  attr(:expiration, :integer, default: 24)
+  slot(:legal)
+  slot(:inner_block, required: true)
 
   def promo(assigns) do
     assigns = assign(assigns, :minutes, assigns.expiration * 60)
@@ -24,9 +24,9 @@ defmodule LiveViewStudioWeb.CustomComponents do
     """
   end
 
-  attr :label, :string, required: true
-  attr :class, :string, default: nil
-  attr :rest, :global
+  attr(:label, :string, required: true)
+  attr(:class, :string, default: nil)
+  attr(:rest, :global)
 
   def badge(assigns) do
     ~H"""
@@ -39,7 +39,7 @@ defmodule LiveViewStudioWeb.CustomComponents do
     """
   end
 
-  attr :visible, :boolean, default: false
+  attr(:visible, :boolean, default: false)
 
   def loading_indicator(assigns) do
     ~H"""
