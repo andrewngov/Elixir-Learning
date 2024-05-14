@@ -73,3 +73,24 @@ Lesson 14 - Live Ecto Forms and Lists
 
 Lesson 15 - Live validation
 -Change form to validate as the user is inputting the information
+
+Lesson 16 - Streams
+-If we expect a lot of inserts in the database to happen
+    -We don't want the data to be kept in memory as part of the LiveView state
+    -We want to prepend to list shown in the browser and not keep them on memory in server
+-Use streams instead of assign
+    -Assigns a new stream to socket
+    -html code needs to be wrapped in parent container with phx-change="stream"
+-Rather than calling update on socket use stream_insert
+-Stream vs temporary_assigns:
+    -temporary_assigns for static data that only needs to be rendered
+    -Streams for collections of items that you don't want to hold in memory but need to update collection after
+
+Lesson 17 - Toggling State
+-Add toggling of state to page from previous lesson
+-phx-value-* to fetch value when clicking button
+-Add functionality to the check out option of the previous page we built(check in page for volunteers)
+    -Page status automatically updated when person checks out(name is greyed and button changes to "Check In")
+-Insert updated check_out status into stream
+-Streams lets us update, delete or add items from large collections without needing to fetch items from database after initial render
+-Add toggling of server status(server LiveView from previous lesson)
