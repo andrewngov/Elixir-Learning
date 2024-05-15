@@ -108,3 +108,12 @@ Lesson 18 - Live Components
     -Send message to self when you want to update stream
     -handle info to get message
 -Handle events in component module, update stream in parent module with handle_info(send message in component module)
+-Function components are stateless while live components are stateful
+-Live components can also use external templates
+
+Lesson 19 - Real-Time Updates
+-Make Volunteer LiveView page update in real-time for check in and check out
+    -If someone checks in or checks out, it should update in real-time for all browsers(shouldn't need to refresh page)
+-Phoenix PubSub
+    -Broadcast info and use handle_info to make sure all LiveViews are synced and up to date
+-Exercise: Broadcast volunteer deletions and make Servers LiveView update in real-time as well
