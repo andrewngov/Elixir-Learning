@@ -137,3 +137,11 @@ Lesson 21 - Live Sessions
 -live_session in router
     -Group routes that have same authentication strategy and share code that enforces it
     -Redirects between them use the same existing websocket connection
+
+Lesson 22 - Presence Tracking
+-Real time of whos currently visting a page
+    -Can see who's watching a vid or has it paused
+-Create presence tracker module through pheonix with "mix phx.gen.presence" |> Add to application.ex
+-Pheonix PubSub to see when someone joins or leaves
+    -Message broadcasted when someone joins or leaves to update in real time
+    -Also changes emoji when user plays or pauses video
