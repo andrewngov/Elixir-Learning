@@ -145,3 +145,13 @@ Lesson 22 - Presence Tracking
 -Pheonix PubSub to see when someone joins or leaves
     -Message broadcasted when someone joins or leaves to update in real time
     -Also changes emoji when user plays or pauses video
+
+Lesson 23 - JS Commands
+-Shop LiveView using mix of JS commands and CSS tailwind
+    -Selection of items to add to cart and a toggle option to view cart(slides in and out)
+    -Add hiding of backdrop(fading in an out as well)
+    -Shake cart when item is added
+-Use JavaScript for client side interactions
+    -Change phx-click event on toggleable cart to call JavaScript function instead of server callback
+-Gives us a declarative way to execute common JavaScript utility functions on the client
+-Advantage is that JS commands can be chained(pipe js command into another one)
