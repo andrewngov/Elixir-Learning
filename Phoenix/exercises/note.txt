@@ -155,3 +155,14 @@ Lesson 23 - JS Commands
     -Change phx-click event on toggleable cart to call JavaScript function instead of server callback
 -Gives us a declarative way to execute common JavaScript utility functions on the client
 -Advantage is that JS commands can be chained(pipe js command into another one)
+
+Lesson 24 - JS Hooks
+-Use JavaScript library with LiveView to show a calendar with booking dates
+    -Unavailable days are crossed out
+    -Use flatpickr javascript library
+    -phx-update="ignore" to not patch over the DOM
+    -push_event to send event to hook
+    -Send event from hook to LiveView to get unavailable dates
+-phx-hook to hook in to the lifecycle of any html element and run custom javascript code
+    -hooks option in app.js
+-JavaScript hooks can be put in a separate file in the assets/js directory(export Hooks variable at end of the file which can then be imported)
