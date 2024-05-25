@@ -9,7 +9,7 @@ defmodule LiveViewStudioWeb.LightLive do
   def render(assigns) do
     ~H"""
     <h1>Front Proch Light</h1>
-    <div id="light">
+    <div id="light" phx-window-keyup="update">
       <div class="meter">
         <span style={"width: #{@brightness}%; background: #{temp_color(@temp)}"}>
           <%= @brightness %>%
@@ -49,6 +49,24 @@ defmodule LiveViewStudioWeb.LightLive do
       </form>
     </div>
     """
+  end
+
+  def handle_event("update", %{"key" => "ArrowUp"}, socket) do
+    {:noreply, brightness_up(socket)}
+  end
+
+  def handle_event("update", %{"key" => "ArrowDown"}, socket) do
+    {:noreply, brightness_down(socket)}
+  end
+
+  def handle_event("update", _, socket), do: {:noreply, socket}
+
+  defp brightness_up(socket) do
+    update(socket, :brightness, &min(&1 + 10, 100))
+  end
+
+  defp brightness_down(socket) do
+    update(socket, :brightness, &max(&1 - 10, 0))
   end
 
   def handle_event("on", _, socket) do

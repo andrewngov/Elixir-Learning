@@ -166,3 +166,9 @@ Lesson 24 - JS Hooks
 -phx-hook to hook in to the lifecycle of any html element and run custom javascript code
     -hooks option in app.js
 -JavaScript hooks can be put in a separate file in the assets/js directory(export Hooks variable at end of the file which can then be imported)
+
+Lesson 25 - Key Events
+-Send event on key press(left and right key to go through images of a person juggling)
+    -Play/pause button to automatically go through list of images
+-phx-keyup
+    -phx-key for the event to only be sent if a certain key is pressed
