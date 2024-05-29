@@ -172,3 +172,15 @@ Lesson 25 - Key Events
     -Play/pause button to automatically go through list of images
 -phx-keyup
     -phx-key for the event to only be sent if a certain key is pressed
+
+Lesson 26 - File Uploads: UI
+-Add ability to upload to a LiveView page(can also drag and drop files)
+    -Shows preview of selected images
+    -Also shows progress bar of upload
+    -Warnings for too many files or if the file is too large
+-LiveView supports uploading files to a server or directly to a cloud storage service
+
+Lesson 27 - File Uploads: Server
+-Copy temp file to directory in the phoenix app that can be served to the user
+    -priv/static directory
+-Save upload files on the server and display file that have been uploaded on the LiveView
