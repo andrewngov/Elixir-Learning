@@ -184,3 +184,12 @@ Lesson 27 - File Uploads: Server
 -Copy temp file to directory in the phoenix app that can be served to the user
     -priv/static directory
 -Save upload files on the server and display file that have been uploaded on the LiveView
+
+Lesson 28 - File Uploads: cloud
+-Upload file to Amazon S3 Bucket
+    -Send HTTP POST request
+        -Form Data which has the files we're uploading + Signature Version 4 Signing Process(AWS credentials, security policay and signature for auth)
+-3 things to do
+    -Tell LiveView which storage service to use
+    -Send POST request with required info
+    -Save S3 URLs for images to the database

@@ -25,6 +25,8 @@ import topbar from "../vendor/topbar"
 import flatpickr from "../vendor/flatpickr"
 import { AsYouType } from "../vendor/libphonenumber-js.min"
 
+import Uploaders from "../uploaders"
+
 let Hooks = {}
 
 Hooks.Calendar =  {
@@ -83,7 +85,8 @@ let csrfToken =
 
 let liveSocket = new LiveSocket("/live", Socket, {
   params: { _csrf_token: csrfToken },
-  hooks: Hooks
+  hooks: Hooks,
+  uploaders: Uploaders
 });
 
 // Show progress bar on live navigation and form submits
